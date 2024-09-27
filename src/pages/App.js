@@ -34,15 +34,16 @@ function App() {
   }
 
   const handleRemoveRepo = (id) => {
-    console.log('Removendo registro', id);
-
-    // utilizar filter.
+    setRepos(repos.filter(function(repo) {
+      return repo.id !== id;
+    }))
   }
 
 
   return (
     <Container>
-      <img src={gitLogo} width={72} height={72} alt="github logo"/>
+      <img src={gitLogo} width={72} height={72} style={{ marginTop: '20px', marginBottom: '40px' }} alt="github logo"/>
+      <h1>Escreva o nome de usuário e o nome do repositorio, ex: marcosros4/trilha-react-desafio-2</h1>
       <Input value={currentRepo} onChange={(e) => setCurrentRepo(e.target.value)} />
       <Button onClick={handleSearchRepo}/>
       {repos.map(repo => <ItemRepo handleRemoveRepo={handleRemoveRepo} repo={repo}/>)}
